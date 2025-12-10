@@ -1,244 +1,162 @@
+<!-- Base structure for navbar + hero with requested changes -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Hosting</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TenterCloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Minecraft Font -->
+  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #0d1117;
+      font-family: "Inter", sans-serif;
+      color: white;
+    }
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+    }
 
-<style>
+    nav .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-/* GLOBAL SETTINGS */
-body {
-    margin: 0;
-    background: #0d0f16;
-    font-family: Poppins, sans-serif;
-    color: #fff;
-}
+    nav img#logo {
+      height: 38px;
+    }
 
-/* ----- NAVBAR ----- */
-.navbar {
-    width: 100%;
-    padding: 18px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(12px);
-    border-radius: 0 0 30px 30px;
-}
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 17px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.25s ease;
+      position: relative;
+    }
 
-.logo {
-    font-size: 28px;
-    font-weight: 700;
-}
-.logo span {
-    color: #00ff9d;
-}
+    /* HOVER similar to provided image */
+    nav a:hover {
+      background: rgba(255,255,255,0.07);
+      transform: translateY(-1px);
+    }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-.nav-links a {
-    color: #dceaff;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    /* UNDERLINE animation like photo */
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #22c1c3, #29fd53);
+      transition: 0.3s ease;
+    }
 
-/* hover animation */
-.nav-links a:hover {
-    color: #00ffea;
-    transform: translateY(-3px);
-}
+    nav a:hover::after {
+      width: 100%;
+    }
 
-/* ----- DROPDOWN ----- */
-.dropdown {
-    position: relative;
-}
-.dropdown-menu {
-    position: absolute;
-    top: 35px;
-    right: -20px;
-    background: rgba(10,20,35,0.95);
-    padding: 10px 0;
-    width: 220px;
-    border-radius: 14px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    display: none;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
+    /* HERO SECTION */
+    .hero {
+      margin-top: 120px;
+      text-align: center;
+    }
 
-.dropdown-menu a {
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: white;
-    transition: 0.2s;
-}
-.dropdown-menu a:hover {
-    background: rgba(255,255,255,0.08);
-    transform: translateY(-2px);
-}
+    .hero h1 {
+      font-size: 46px;
+      font-weight: 700;
+    }
 
-/* CLIENT AREA BUTTON */
-.btn-nav {
-    padding: 10px 22px;
-    background: linear-gradient(45deg,#00ff9d,#00a4ff);
-    border-radius: 15px;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.btn-nav:hover {
-    transform: translateY(-4px);
-    filter: brightness(1.25);
-}
+    .options-wrapper {
+      margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
 
-/* ----- HERO SECTION ----- */
-.hero {
-    padding-top: 180px;
-    padding-bottom: 160px;
-    text-align: center;
-    background: url('bg.jpg') center/cover no-repeat;
-}
+    .card {
+      width: 240px;
+      padding: 26px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px; /* YOU REQUESTED 6px */
+      text-align: center;
+      transition: 0.25s ease;
+    }
 
-.tag {
-    display: inline-block;
-    padding: 8px 18px;
-    background: rgba(140,60,255,0.4);
-    font-size: 14px;
-    border-radius: 18px;
-    margin-bottom: 20px;
-}
+    .card:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-3px);
+    }
 
-.hero-title {
-    font-size: 64px;
-    font-weight: 800;
-}
+    /* Minecraft font for both titles */
+    .mc-font {
+      font-family: 'Minecraft', sans-serif !important;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
 
-.gradient-text {
-    background: linear-gradient(45deg,#8a2eff,#00e1ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-desc {
-    margin-top: 15px;
-    font-size: 18px;
-    opacity: 0.85;
-}
-
-.btn-main {
-    margin-top: 30px;
-    padding: 16px 40px;
-    font-size: 20px;
-    font-weight: 700;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(45deg,#9f3dff,#3af4ff);
-    cursor: pointer;
-    color: white;
-    transition: 0.3s;
-}
-
-.btn-main:hover {
-    transform: translateY(-5px);
-    filter: brightness(1.25);
-}
-
-/* CATEGORY BUTTONS */
-.categories {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.cat-btn {
-    padding: 12px 28px;
-    border: 1px solid rgba(255,255,255,0.25);
-    background: rgba(255,255,255,0.05);
-    border-radius: 30px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.cat-btn:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.12);
-}
-
-</style>
+    .get-started-title {
+      font-family: 'Minecraft', sans-serif;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">Mine<span>Rack</span></div>
+<nav>
+  <div class="left">
+    <img id="logo" src="logo.png" alt="logo" />
+    <a href="#"><span>🏠</span> Dashboard</a>
+  </div>
+</nav>
 
-    <div class="nav-links">
-        <a href="index.html"><i class="fa fa-home"></i> Home</a>
-        <a href="#"><i class="fa fa-star"></i> Features</a>
-
-        <div class="dropdown">
-            <a><i class="fa fa-cube"></i> Services</a>
-
-            <div class="dropdown-menu">
-                <a href="minecraft.html"><i class="fa fa-cubes"></i> Minecraft Hosting</a>
-                <a href="vps.html"><i class="fa fa-server"></i> VPS Hosting</a>
-                <a href="discord.html"><i class="fa fa-robot"></i> Discord Bot Hosting</a>
-                <a href="ddos.html"><i class="fa fa-shield"></i> DDoS Protection</a>
-            </div>
-        </div>
-
-        <a href="status.html"><i class="fa fa-signal"></i> Status</a>
-        <a href="faq.html"><i class="fa fa-circle-question"></i> FAQ</a>
-    </div>
-
-    <a href="https://client.example.com" class="btn-nav">Client Area</a>
-</div>
-
-<!-- HERO SECTION -->
 <div class="hero">
-    <div class="tag">Minecraft Hosting</div>
+  <h1>Get Started</h1>
 
-    <div class="hero-title">
-        <span class="gradient-text">Minecraft</span> Hosting
+  <div class="get-started-title">Select Your Hosting</div>
+
+  <div class="options-wrapper">
+    <div class="card" onclick="openVPS()">
+      <div class="mc-font">VPS Hosting</div>
     </div>
 
-    <div class="hero-desc">
-        High-performance Minecraft hosting with 99.9% uptime,
-        DDoS protection, and instant setup. Perfect for any community.
+    <div class="card" onclick="openMC()">
+      <div class="mc-font">Minecraft Hosting</div>
     </div>
-
-    <div class="hero-desc">
-        Starting at <span style="color:#6dbbff;">$1.00/mo</span>
-    </div>
-
-    <button class="btn-main">Get Started</button>
-
-    <div class="categories">
-        <button onclick="location.href='minecraft.html'" class="cat-btn">Minecraft Hosting</button>
-        <button onclick="location.href='vps.html'" class="cat-btn">VPS Hosting</button>
-        <button onclick="location.href='discord.html'" class="cat-btn">Discord Hosting</button>
-    </div>
+  </div>
 </div>
+
+<script>
+  function openVPS() {
+    window.location.href = "vps.html";
+  }
+  function openMC() {
+    window.location.href = "minecraft.html";
+  }
+</script>
 
 </body>
 </html>
