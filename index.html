@@ -1,232 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Hosting</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Hosting</title>
 
-    <style>
-        body {
-            margin: 0;
-            background: #0d0f16;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-        }
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Navbar */
-        .navbar {
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
+<style>
 
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-        }
+/* GLOBAL SETTINGS */
+body {
+    margin: 0;
+    background: #0d0f16;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+}
 
-        .logo span {
-            color: #00ff9d;
-        }
+/* ----- NAVBAR ----- */
+.navbar {
+    width: 100%;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 30px 30px;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 35px;
-            font-size: 16px;
-        }
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+.logo span {
+    color: #00ff9d;
+}
 
-        .nav-item {
-            cursor: pointer;
-            position: relative;
-        }
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.nav-links a {
+    color: #dceaff;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        /* Dropdown */
-        .dropdown {
-            position: relative;
-        }
+/* hover animation */
+.nav-links a:hover {
+    color: #00ffea;
+    transform: translateY(-3px);
+}
 
-        .dropdown-menu {
-            position: absolute;
-            top: 30px;
-            left: -10px;
-            background: #131722;
-            padding: 12px 0;
-            width: 180px;
-            border-radius: 10px;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-        }
+/* ----- DROPDOWN ----- */
+.dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    right: -20px;
+    background: rgba(10,20,35,0.95);
+    padding: 10px 0;
+    width: 220px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    display: none;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
-        .dropdown:hover .dropdown-menu {
-            display: flex;
-        }
+.dropdown-menu a {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+.dropdown-menu a:hover {
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
+}
 
-        .dropdown-menu a {
-            color: white;
-            padding: 10px 18px;
-            text-decoration: none;
-            transition: 0.2s;
-        }
+/* CLIENT AREA BUTTON */
+.btn-nav {
+    padding: 10px 22px;
+    background: linear-gradient(45deg,#00ff9d,#00a4ff);
+    border-radius: 15px;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-nav:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.25);
+}
 
-        .dropdown-menu a:hover {
-            background: rgba(255,255,255,0.07);
-        }
+/* ----- HERO SECTION ----- */
+.hero {
+    padding-top: 180px;
+    padding-bottom: 160px;
+    text-align: center;
+    background: url('bg.jpg') center/cover no-repeat;
+}
 
-        /* Client Area Button */
-        .btn-nav {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, #00ff9d, #008cff);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.tag {
+    display: inline-block;
+    padding: 8px 18px;
+    background: rgba(140,60,255,0.4);
+    font-size: 14px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
 
-        .btn-nav:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.2);
-        }
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+}
 
-        /* HERO SECTION */
-        .hero {
-            padding-top: 150px;
-            text-align: center;
-            background-image: url("bg.png"); /* Add your background */
-            background-size: cover;
-            background-position: center;
-            padding-bottom: 150px;
-        }
+.gradient-text {
+    background: linear-gradient(45deg,#8a2eff,#00e1ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        .tag {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 8px 18px;
-            background: rgba(120, 60, 255, 0.4);
-            border-radius: 20px;
-            font-size: 14px;
-        }
+.hero-desc {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.85;
+}
 
-        .hero-title {
-            font-size: 60px;
-            font-weight: 800;
-        }
+.btn-main {
+    margin-top: 30px;
+    padding: 16px 40px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(45deg,#9f3dff,#3af4ff);
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
 
-        .gradient-text {
-            background: linear-gradient(45deg, #8a2eff, #00e5ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.btn-main:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.25);
+}
 
-        .hero-desc {
-            margin-top: 10px;
-            font-size: 18px;
-            opacity: 0.8;
-        }
+/* CATEGORY BUTTONS */
+.categories {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
-        /* CTA Button */
-        .btn {
-            margin-top: 25px;
-            padding: 14px 35px;
-            background: linear-gradient(45deg, #8a2eff, #00e5ff);
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            color: white;
-            transition: 0.3s;
-        }
+.cat-btn {
+    padding: 12px 28px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.05);
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .btn:hover {
-            transform: translateY(-4px);
-            filter: brightness(1.2);
-        }
+.cat-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.12);
+}
 
-        /* Category buttons */
-        .categories {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cat-btn {
-            padding: 10px 25px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            background: transparent;
-        }
-
-        .cat-btn:hover {
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.1);
-        }
-    </style>
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <div class="logo">Mine<span>Rack</span></div>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Mine<span>Rack</span></div>
 
-        <div class="nav-links">
-            <div class="nav-item">Home</div>
-            <div class="nav-item">Features</div>
+    <div class="nav-links">
+        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+        <a href="#"><i class="fa fa-star"></i> Features</a>
 
-            <div class="nav-item dropdown">
-                Services ▼
-                <div class="dropdown-menu">
-                    <a href="#">Minecraft Hosting</a>
-                    <a href="#">VPS Hosting</a>
-                    <a href="#">Discord Bot Hosting</a>
-                </div>
+        <div class="dropdown">
+            <a><i class="fa fa-cube"></i> Services</a>
+
+            <div class="dropdown-menu">
+                <a href="minecraft.html"><i class="fa fa-cubes"></i> Minecraft Hosting</a>
+                <a href="vps.html"><i class="fa fa-server"></i> VPS Hosting</a>
+                <a href="discord.html"><i class="fa fa-robot"></i> Discord Bot Hosting</a>
+                <a href="ddos.html"><i class="fa fa-shield"></i> DDoS Protection</a>
             </div>
-
-            <div class="nav-item">Status</div>
-            <div class="nav-item">FAQ</div>
         </div>
 
-        <div class="btn-nav">Client Area</div>
+        <a href="status.html"><i class="fa fa-signal"></i> Status</a>
+        <a href="faq.html"><i class="fa fa-circle-question"></i> FAQ</a>
     </div>
 
-    <!-- HERO SECTION -->
-    <div class="hero">
-        <div class="tag">Minecraft Hosting</div>
+    <a href="https://client.example.com" class="btn-nav">Client Area</a>
+</div>
 
-        <div class="hero-title">
-            <span class="gradient-text">Minecraft</span> Hosting
-        </div>
+<!-- HERO SECTION -->
+<div class="hero">
+    <div class="tag">Minecraft Hosting</div>
 
-        <div class="hero-desc">
-            High-performance Minecraft server hosting with 99.9% uptime, DDoS protection,
-            and instant setup. Perfect for any size community.
-        </div>
-
-        <div class="hero-desc">
-            Starting at <span style="color:#6cc1ff;">$1.00/mo</span>
-        </div>
-
-        <button class="btn">Get Started</button>
-
-        <div class="categories">
-            <button class="cat-btn">Minecraft Hosting</button>
-            <button class="cat-btn">VPS Hosting</button>
-            <button class="cat-btn">Discord Hosting</button>
-        </div>
+    <div class="hero-title">
+        <span class="gradient-text">Minecraft</span> Hosting
     </div>
+
+    <div class="hero-desc">
+        High-performance Minecraft hosting with 99.9% uptime,
+        DDoS protection, and instant setup. Perfect for any community.
+    </div>
+
+    <div class="hero-desc">
+        Starting at <span style="color:#6dbbff;">$1.00/mo</span>
+    </div>
+
+    <button class="btn-main">Get Started</button>
+
+    <div class="categories">
+        <button onclick="location.href='minecraft.html'" class="cat-btn">Minecraft Hosting</button>
+        <button onclick="location.href='vps.html'" class="cat-btn">VPS Hosting</button>
+        <button onclick="location.href='discord.html'" class="cat-btn">Discord Hosting</button>
+    </div>
+</div>
 
 </body>
 </html>
